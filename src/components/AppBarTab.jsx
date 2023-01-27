@@ -1,11 +1,5 @@
-import { StyleSheet, Pressable } from 'react-native';
+import { Pressable } from 'react-native';
 import Text from './Text';
-
-const styles = StyleSheet.create({
-    tab:{
-      padding:20,
-    }
-  });
 
 const AppBarTab = ({ title }) => {
     return(
@@ -14,7 +8,7 @@ const AppBarTab = ({ title }) => {
         fontSize="subheading" 
         fontWeight="bold" 
         color="colorWhite"
-        style={styles.tab}>
+        style={{ padding: 20 }}>
           {title}
         </Text>
       </Pressable>
