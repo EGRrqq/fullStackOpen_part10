@@ -23,7 +23,7 @@ const TextInput = ({ style, error, ...props }) => {
     !error && styles.validInput,
     error && styles.errorInput,
   ];
-  // console.log(error);
+
   return <NativeTextInput style={textInputStyle} {...props} />;
 };
 
