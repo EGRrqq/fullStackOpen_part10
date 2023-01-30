@@ -7,15 +7,12 @@ import Text from './Text';
 
 const styles = StyleSheet.create({
   errorText: {
-    marginTop: 5,
+    paddingLeft: 15,
+    color: theme.colors.textError,
   },
   textInput: {
-    borderColor: theme.colors.textSecondary,
-    borderStyle: 'solid',
     padding: 15,
     margin: 8,
-    borderWidth: 1,
-    borderRadius: 5,
   },
 });
 
