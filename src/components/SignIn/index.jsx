@@ -1,5 +1,5 @@
 import { Formik } from 'formik';
-import SignInForm from './SignInForm';
+import SignInForm from './Form';
 import * as yup from 'yup';
 
 const SignIn = () => {
