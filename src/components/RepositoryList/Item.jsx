@@ -4,32 +4,46 @@ import theme from '../../theme';
 
 const styles = StyleSheet.create({
   container: {
-    display:'flex',
     backgroundColor: theme.colors.whiteColor,
     padding: 15,
   },
-  topRow: {
+  topContainer: {
     flexDirection: 'row',
     marginBottom: 5,
-    flexGrow: 1,
-    flexShrink: 1,
   },
-  bottomRow: {
+  bottomContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-evenly',
+    justifyContent: 'space-around',
+  },
+  imageContainer: {
+    flexGrow: 0,
+    marginRight: 20,
   },
   image: {
     height: 50,
     width: 50,
     borderRadius: 5,
-    marginRight: 15,
   },
-  language: {
+  textContainer: {
+    flexGrow: 1,
+    flexShrink: 1,
+  },
+  languageContainer: {
+    marginTop: 10,
+    flexDirection: 'row',
+  },
+  languageText: {
     backgroundColor: theme.colors.blueColor,
-    padding: 5,
     borderRadius: 5,
-    alignSelf: 'flex-start',
-    overflow: 'hidden',
+    flexGrow: 0,
+    paddingVertical: 3,
+    paddingHorizontal: 6,
+  },
+  roundNUm: {
+    flexGrow: 0,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 15,
   },
 })
 
@@ -43,9 +57,12 @@ const roundNum = (num) => {
 const RepositoryItem = ({ repo }) => {
   return (
     <View style={styles.container}>
-      <View style={styles.topRow}>
-        <Image style={styles.image} source={{ uri: repo.ownerAvatarUrl }} />
-        <View style={{ marginBottom: 10 }}>
+      <View style={styles.topContainer}>
+        <View style={styles.imageContainer}>
+          <Image style={styles.image} source={{ uri: repo.ownerAvatarUrl }} />
+        </View>
+
+        <View style={styles.textContainer}>
           <Text
             style={{ marginBottom: 5 }}
             fontSize="subheading" 
@@ -53,29 +70,31 @@ const RepositoryItem = ({ repo }) => {
           >
             {repo.fullName}
           </Text>
-          <Text style={{ marginBottom: 7 }} color='textSecondary'>
+          <Text style={{ flexGrow: 1 }} color='textSecondary'>
             {repo.description}
           </Text>
-          <Text color='colorWhite' style={styles.language}>
-            {repo.language}
-          </Text>
+          {repo.language ? (
+            <View style={styles.languageContainer}>
+              <Text color='colorWhite' style={styles.languageText}>{repo.language}</Text>
+            </View>
+          ) : null}
         </View>
       </View>
-      <View style={styles.bottomRow}>
-        <View style={{ alignItems: 'center' }}>
-          <Text fontWeight='bold'>{roundNum(repo.stargazersCount)}</Text>
+      <View style={styles.bottomContainer}>
+        <View style={styles.roundNUm}>
+          <Text style={{marginBottom: 5}} fontWeight='bold'>{roundNum(repo.stargazersCount)}</Text>
           <Text color='textSecondary'>Stars</Text>
         </View>
-        <View style={{ alignItems: 'center' }}>
-          <Text fontWeight='bold'>{roundNum(repo.forksCount)}</Text>
+        <View style={styles.roundNUm}>
+          <Text style={{marginBottom: 5}} fontWeight='bold'>{roundNum(repo.forksCount)}</Text>
           <Text color='textSecondary'>Forks</Text>
         </View>
-        <View style={{ alignItems: 'center' }}>
-          <Text fontWeight='bold'>{roundNum(repo.reviewCount)}</Text>
+        <View style={styles.roundNUm}>
+          <Text style={{marginBottom: 5}} fontWeight='bold'>{roundNum(repo.reviewCount)}</Text>
           <Text color='textSecondary'>Reviews</Text>
         </View>
-        <View style={{ alignItems: 'center' }}>
-          <Text fontWeight='bold'>{repo.ratingAverage}</Text>
+        <View style={styles.roundNUm}>
+          <Text style={{marginBottom: 5}} fontWeight='bold'>{repo.ratingAverage}</Text>
           <Text color='textSecondary'>Rating</Text>
         </View>  
       </View>

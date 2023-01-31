@@ -1,5 +1,5 @@
 import { Platform } from "react-native";
-// console.log(Platform);
+
 const theme = {
   colors: {
     textPrimary: '#24292e',
