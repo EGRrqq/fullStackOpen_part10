@@ -1,6 +1,7 @@
 import { Formik } from 'formik';
 import SignInForm from './Form';
 import useSignIn from '../../hooks/useSignIn';
+import { useNavigate } from 'react-router-native';
 import * as yup from 'yup';
 
 const SignIn = () => {
@@ -10,13 +11,14 @@ const SignIn = () => {
   };
 
   const [signIn] = useSignIn();
+  const navigate = useNavigate();
 
   const onSubmit = async (values) => {
     const { username, password } = values;
 
     try {
-      const { data } = await signIn(username, password);
-      console.log(data);
+      await signIn(username, password);
+      navigate('/');
     } catch (e) {
       console.log(e);
     }
