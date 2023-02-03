@@ -19,8 +19,10 @@ const styles = StyleSheet.create({
 const AppBar = () => {
   const client = useApolloClient();
   const authStorage = useAuthStorage();
+
   const { data } = useQuery(ME);
-  
+  const currentUser = data?.me;
+
   const handleSignOut = async () => {
     await authStorage.removeAccessToken();
     client.resetStore();
@@ -30,19 +32,19 @@ const AppBar = () => {
     <View style={styles.container}>
       <ScrollView horizontal>        
         <AppBarTab title="Repository" path="/" />
-        {data && data.me ? (
-          <Pressable
-            style={{ padding: 20 }}
-            onPress={handleSignOut}
-          >
-            <Text 
+        {currentUser ? (
+          <>
+           <Text 
               color='colorWhite'
               fontWeight="bold"
               fontSize='subheading'
+              onPress={handleSignOut}
+              style={{ padding: 20 }}
             >
               Sign Out
             </Text>
-          </Pressable>
+            <AppBarTab title='Create a review' path='/review' />
+          </>
         ) : (
           <AppBarTab title="Sign In" path="/sign-in" />
         )}

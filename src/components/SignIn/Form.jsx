@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
         alignItems: 'stretch',
         padding: 5,
     },
-    buttton: {
+    button: {
         backgroundColor: theme.colors.blueColor,
         alignItems: 'center',
         padding: 15,
@@ -29,7 +29,7 @@ const SignInForm = ({ onSubmit }) => {
             placeholder='Password'
             secureTextEntry={true}
           />
-          <Pressable onPress={onSubmit} style={styles.buttton}>
+          <Pressable onPress={onSubmit} style={styles.button}>
             <Text color='colorWhite' fontWeight='bold'>
               Sign In
             </Text>
