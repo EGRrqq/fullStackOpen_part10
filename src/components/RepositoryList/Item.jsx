@@ -56,12 +56,11 @@ const roundNum = (num) => {
 
 const RepositoryItem = ({ repo }) => {
   return (
-    <View style={styles.container}>
+    <View style={styles.container} testID='repositoryItem'>
       <View style={styles.topContainer}>
         <View style={styles.imageContainer}>
           <Image style={styles.image} source={{ uri: repo.ownerAvatarUrl }} />
         </View>
-
         <View style={styles.textContainer}>
           <Text
             style={{ marginBottom: 5 }}
