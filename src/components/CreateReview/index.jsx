@@ -15,16 +15,20 @@ const CreateReview = () => {
 
   const submit = (values) => {
     const { ownerName, repositoryName, rating, text } = values;
-    mutate({
-      variables: {
-        review: {
-          ownerName,
-          repositoryName,
-          rating: Number(rating),
-          text,
+    try {
+      mutate({
+        variables: {
+          review: {
+            ownerName,
+            repositoryName,
+            rating: Number(rating),
+            text,
+          },
         },
-      },
-    });
+      });
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return <ReviewContainer onSubmit={submit} />;

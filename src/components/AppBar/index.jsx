@@ -1,4 +1,4 @@
-import { View, StyleSheet, ScrollView, Pressable } from 'react-native';
+import { View, StyleSheet, ScrollView } from 'react-native';
 import { useQuery, useApolloClient } from '@apollo/client';
 import useAuthStorage from '../../hooks/useAuthStorage';
 import { ME } from '../../graphql/queries';
@@ -34,6 +34,7 @@ const AppBar = () => {
         <AppBarTab title="Repository" path="/" />
         {currentUser ? (
           <>
+          <AppBarTab title='Create a review' path='/review' />
            <Text 
               color='colorWhite'
               fontWeight="bold"
@@ -43,10 +44,12 @@ const AppBar = () => {
             >
               Sign Out
             </Text>
-            <AppBarTab title='Create a review' path='/review' />
           </>
         ) : (
-          <AppBarTab title="Sign In" path="/sign-in" />
+          <>
+            <AppBarTab title='Sign In' path='/sign-in' />
+            <AppBarTab title='Sign Up' path='/sign-up' />
+          </>
         )}
       </ScrollView>
     </View>

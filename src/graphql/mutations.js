@@ -16,3 +16,11 @@ export const REVIEW = gql`
     }
   }
 `;
+
+export const REGISTER = gql`
+  mutation ($user: CreateUserInput) {
+    createUser(user: $user) {
+      username
+    }
+  }
+`;
