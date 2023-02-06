@@ -1,6 +1,8 @@
+import React from 'react';
 import { FlatList, View, StyleSheet } from 'react-native';
 import RepositoryItem from './Item';
 import { Link } from 'react-router-native';
+import { Picker } from '@react-native-picker/picker';
 
 const styles = StyleSheet.create({
   separator: {
@@ -10,22 +12,30 @@ const styles = StyleSheet.create({
 
 const ItemSeparator = () => <View style={styles.separator} />;
 
-const RepositoryListContainer = ({ repositories }) => {
+const RepositoryListContainer = ({ repositories, handleChange, orderBy }) => {
   const repositoryNodes = repositories
     ? repositories.edges.map(edge => edge.node)
     : [];
 
   return (
-    <FlatList
-      data={repositoryNodes}
-      ItemSeparatorComponent={ItemSeparator}
-      keyExtractor={({ id }) => id}
-      renderItem={({ item }) => (
+    <View>
+      <Picker selectedValue={orderBy}
+        onValueChange={(itemValue) => handleChange(itemValue)}>
+        <Picker.Item label="Latest repositories" value="CREATED_AT DESC" />
+        <Picker.Item label="Highest rated repositories" value="RATING_AVERAGE DESC" />
+        <Picker.Item label="Lowest rated repositories" value="RATING_AVERAGE ASC" />
+      </Picker>
+      <FlatList
+        data={repositoryNodes}
+        ItemSeparatorComponent={ItemSeparator}
+        keyExtractor={({ id }) => id}
+        renderItem={({ item }) => (
         <Link to={`/${item.id}`}>
-          <RepositoryItem repo={item} />
+          <RepositoryItem repo={item} isSingle={false} />
         </Link>
-      )}
-    />
+        )}
+      />
+    </View>
   );
 };
 
