@@ -3,6 +3,7 @@ import { FlatList, View, StyleSheet } from 'react-native';
 import RepositoryItem from './Item';
 import { Link } from 'react-router-native';
 import { Picker } from '@react-native-picker/picker';
+import { Searchbar } from 'react-native-paper';
 
 const styles = StyleSheet.create({
   separator: {
@@ -12,13 +13,14 @@ const styles = StyleSheet.create({
 
 const ItemSeparator = () => <View style={styles.separator} />;
 
-const RepositoryListContainer = ({ repositories, handleChange, orderBy }) => {
+const RepositoryListContainer = ({ repositories, handleChange, orderBy, textFieldChange }) => {
   const repositoryNodes = repositories
     ? repositories.edges.map(edge => edge.node)
     : [];
 
   return (
     <View>
+      <Searchbar onChangeText={textFieldChange} />
       <Picker selectedValue={orderBy}
         onValueChange={(itemValue) => handleChange(itemValue)}>
         <Picker.Item label="Latest repositories" value="CREATED_AT DESC" />
